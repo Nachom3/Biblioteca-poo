@@ -1,0 +1,20 @@
+# Build results
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# SQLite database (se genera automáticamente)
+biblioteca.db
+biblioteca.db-journal
+
+# Rider / VS Code
+.idea/
+.vscode/
+
+# OS files
+Thumbs.db
+.DS_Store
