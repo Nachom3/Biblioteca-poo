@@ -16,7 +16,7 @@ namespace Biblioteca_Mastrangelo_Portela.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlite(@"Data Source=C:\Users\ignac\Desktop\Biblioteca-poo\biblioteca.db");
+            options.UseSqlite(@"Data Source=/home/nacho/Documentos/Biblioteca-poo/biblioteca.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -25,6 +25,7 @@ namespace Biblioteca_Mastrangelo_Portela.Data
 
             modelBuilder.Entity<TipoSocio>(entity =>
             {
+                entity.ToTable("TipoSocio");
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Nombre).IsRequired().HasMaxLength(50);
                 entity.Property(e => e.MaximoLibrosSimultaneos).IsRequired();
@@ -34,18 +35,21 @@ namespace Biblioteca_Mastrangelo_Portela.Data
 
             modelBuilder.Entity<EstadoPrestamo>(entity =>
             {
+                entity.ToTable("EstadoPrestamo");
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Nombre).IsRequired().HasMaxLength(50);
             });
 
             modelBuilder.Entity<EstadoReserva>(entity =>
             {
+                entity.ToTable("EstadoReserva");
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Nombre).IsRequired().HasMaxLength(50);
             });
 
             modelBuilder.Entity<Libro>(entity =>
             {
+                entity.ToTable("Libro");
                 entity.HasKey(e => e.ISBN);
                 entity.Property(e => e.ISBN).IsRequired().HasMaxLength(20);
                 entity.Property(e => e.Titulo).IsRequired().HasMaxLength(200);
@@ -57,6 +61,7 @@ namespace Biblioteca_Mastrangelo_Portela.Data
 
             modelBuilder.Entity<Socio>(entity =>
             {
+                entity.ToTable("Socio");
                 entity.HasKey(e => e.NroSocio);
                 entity.Property(e => e.Nombre).IsRequired().HasMaxLength(100);
                 entity.Property(e => e.Apellido).IsRequired().HasMaxLength(100);
@@ -70,6 +75,7 @@ namespace Biblioteca_Mastrangelo_Portela.Data
 
             modelBuilder.Entity<Prestamo>(entity =>
             {
+                entity.ToTable("Prestamo");
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.FechaPrestamo).IsRequired();
                 entity.Property(e => e.FechaVencimiento).IsRequired();
@@ -93,6 +99,7 @@ namespace Biblioteca_Mastrangelo_Portela.Data
 
             modelBuilder.Entity<Reserva>(entity =>
             {
+                entity.ToTable("Reserva");
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.FechaReserva).IsRequired();
 
@@ -114,6 +121,7 @@ namespace Biblioteca_Mastrangelo_Portela.Data
 
             modelBuilder.Entity<Multa>(entity =>
             {
+                entity.ToTable("Multa");
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.DiasDemora).IsRequired();
                 entity.Property(e => e.Monto).IsRequired().HasPrecision(18, 2);
